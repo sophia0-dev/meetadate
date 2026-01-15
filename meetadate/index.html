@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEETADATE - Sneak Peek</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { margin: 0; padding: 0; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        
+        const DatingSitePreview = () => {
+            const colors = {
+                primaryRed: '#800020', 
+                accentGold: '#D4AF37', 
+                textWhite: '#FFFFFF',
+                bgWhite: '#F9F9F9',
+                darkText: '#333333'
+            };
+
+            const styles = {
+                container: { fontFamily: 'Helvetica, Arial, sans-serif', backgroundColor: colors.bgWhite, minHeight: '100vh' },
+                navbar: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem', backgroundColor: colors.primaryRed, color: colors.textWhite, boxShadow: '0 2px 10px rgba(0,0,0,0.2)' },
+                logo: { fontSize: '1.5rem', fontWeight: 'bold', color: colors.accentGold, letterSpacing: '1px' },
+                navButton: { backgroundColor: 'transparent', border: `1px solid ${colors.accentGold}`, color: colors.accentGold, padding: '0.5rem 1.5rem', borderRadius: '20px', cursor: 'pointer', fontWeight: '600' },
+                
+                heroSection: { textAlign: 'center', padding: '4rem 1rem', background: `linear-gradient(135deg, ${colors.primaryRed} 0%, #4a0010 100%)`, color: colors.textWhite },
+                
+                // UPDATED FONT STYLE HERE
+                heroTitle: { 
+                    fontFamily: '"Playfair Display", serif', // This applies the new font
+                    fontSize: '3.5rem', 
+                    marginBottom: '1rem', 
+                    fontWeight: '700',
+                    fontStyle: 'italic' // Added italics for extra elegance
+                },
+                
+                heroSubtitle: { fontSize: '1.2rem', maxWidth: '600px', margin: '0 auto 2rem auto', opacity: '0.9' },
+                ctaButton: { backgroundColor: colors.accentGold, color: '#000', border: 'none', padding: '1rem 2.5rem', fontSize: '1.1rem', fontWeight: 'bold', borderRadius: '30px', cursor: 'pointer', boxShadow: '0 4px 15px rgba(212, 175, 55, 0.4)' },
+                eventsSection: { padding: '3rem 2rem', textAlign: 'center' },
+                sectionTitle: { color: colors.primaryRed, fontSize: '2rem', marginBottom: '2rem', borderBottom: `2px solid ${colors.accentGold}`, display: 'inline-block', paddingBottom: '0.5rem' },
+                cardGrid: { display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' },
+                card: { backgroundColor: 'white', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', width: '300px', overflow: 'hidden', borderTop: `4px solid ${colors.accentGold}` },
+                cardHeader: { backgroundColor: '#f4f4f4', padding: '1rem', fontWeight: 'bold', color: colors.primaryRed },
+                cardBody: { padding: '1.5rem', color: '#555' }
+            };
+
+            return (
+                <div style={styles.container}>
+                    <nav style={styles.navbar}>
+                        <div style={styles.logo}>MEETADATE</div>
+                        <button style={styles.navButton}>Login</button>
+                    </nav>
+                    <header style={styles.heroSection}>
+                        <h1 style={styles.heroTitle}>Find Your Perfect Match</h1>
+                        <p style={styles.heroSubtitle}>Experience exclusive dating events and premium matchmaking across Nigeria.</p>
+                        <button style={styles.ctaButton}>Join the Waitlist</button>
+                    </header>
+                    <section style={styles.eventsSection}>
+                        <h2 style={styles.sectionTitle}>Upcoming Events</h2>
+                        <div style={styles.cardGrid}>
+                            <div style={styles.card}>
+                                <div style={styles.cardHeader}>LAGOS</div>
+                                <div style={styles.cardBody}><h3>Rooftop Mixer</h3><p>Friday, 8:00 PM</p></div>
+                            </div>
+                            <div style={styles.card}>
+                                <div style={styles.cardHeader}>ABUJA</div>
+                                <div style={styles.cardBody}><h3>Gold Gala Night</h3><p>Saturday, 7:00 PM</p></div>
+                            </div>
+                            <div style={styles.card}>
+                                <div style={styles.cardHeader}>ENUGU</div>
+                                <div style={styles.cardBody}><h3>Speed Dating</h3><p>Sunday, 5:00 PM</p></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<DatingSitePreview />);
+    </script>
+</body>
+</html>
