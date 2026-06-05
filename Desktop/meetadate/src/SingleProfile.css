@@ -1,0 +1,70 @@
+.single-profile-card {
+  position: relative;
+  background-color: white;
+  padding: 2rem;
+  border: 2px solid #c5a059; /* metallicGold */
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.single-profile-badge {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #c5a059;
+  color: #4a0404; /* deepWine */
+  padding: 0.5rem 1.5rem;
+  font-family: "Cinzel", serif;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  white-space: nowrap;
+}
+
+.single-profile-image {
+  width: 180px;
+  height: 180px;
+  margin: 1.5rem auto;
+  border-radius: 50%;
+  border: 4px solid #fdfbf7; /* bgCream */
+  object-fit: cover;
+}
+
+.single-profile-name {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  color: #4a0404;
+}
+
+.single-profile-details {
+  color: #c5a059;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.single-profile-quote {
+  font-style: italic;
+  color: #666666;
+  margin-bottom: 1.5rem;
+}
+
+.single-profile-btn {
+  background: transparent;
+  border: 1px solid #4a0404;
+  color: #4a0404;
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: "Cinzel", serif;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.single-profile-btn:hover {
+  background: #4a0404;
+  color: white;
+}
