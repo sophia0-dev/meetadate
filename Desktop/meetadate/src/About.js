@@ -3,7 +3,7 @@ import React from 'react';
 const AboutPage = () => {
   // Color Palette (consistent with main page)
   const colors = {
-    logoRed: '#880000',
+    logoRed: '#7b0100',
     metallicGold: '#c5a059',
     softWhite: '#fdfbf7',
   };

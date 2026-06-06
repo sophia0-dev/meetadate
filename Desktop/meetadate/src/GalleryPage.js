@@ -8,7 +8,7 @@ const GalleryPage = () => {
 
   const colors = {
     deepWine: '#4a0404',
-    richRed: '#880000',
+    richRed: '#7b0100',
     metallicGold: '#c5a059',
     softWhite: '#ffffff',
     bgCream: '#fdfbf7',
@@ -141,6 +141,42 @@ const GalleryPage = () => {
           })}
         </div>
       )}
+     {/* VIDEO HIGHLIGHTS SECTION */}
+<div style={{ marginTop: "5rem", textAlign: "center" }}>
+  <h2 style={{ fontFamily: "'Cinzel', serif", color: colors.deepWine, fontSize: "2.5rem", marginBottom: "3rem" }}>Video Highlights</h2>
+  
+ <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
+    {photos.map((photo) => {
+      // Check if this specific gallery post has a video URL saved in its ACF data
+      const videoUrl = photo.acf?.video_url;
+      
+      // If there is no video, return null (skip it)
+      if (!videoUrl) return null;
+
+      return (
+        <div key={`video-${photo.id}`} style={{ width: "400px", borderRadius: "8px", overflow: "hidden", boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}>
+          
+          {/* The Video iframe */}
+          <iframe 
+            width="100%" 
+            height="250" 
+            src={videoUrl} 
+            title={photo.title.rendered} 
+            frameBorder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen
+          ></iframe>
+          
+          {/* Video Title Card */}
+          <div style={{ backgroundColor: colors.deepWine, padding: "1rem", color: "white" }}>
+             <h4 style={{ fontFamily: "'Cinzel', serif", margin: 0, fontSize: "1.2rem" }}>{photo.title.rendered}</h4>
+          </div>
+
+        </div>
+      );
+    })}
+  </div>
+</div> 
 
       {/* FOOTER */}
       <footer style={{ marginTop: 'auto', backgroundColor: '#111', color: '#666', textAlign: 'center', padding: '2rem', fontSize: '0.9rem', fontFamily: '"Lato", sans-serif' }}>

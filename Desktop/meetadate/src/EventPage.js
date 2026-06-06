@@ -5,7 +5,7 @@ const EventPage = () => {
   const navigate = useNavigate();
   const colors = {
     deepWine: '#4a0404',
-    richRed: '#880000', // Matches your Logo
+    richRed: '#7b0100', // Matches your Logo
     metallicGold: '#c5a059',
     softWhite: '#ffffff',
     bgCream: '#fdfbf7',

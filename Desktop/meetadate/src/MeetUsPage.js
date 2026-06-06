@@ -7,7 +7,7 @@ const MeetUsPage = () => {
   // The MeetADate Color Palette
   const colors = {
     deepWine: '#4a0404',
-    richRed: '#880000',
+    richRed: '#7b0100',
     metallicGold: '#c5a059',
     softWhite: '#ffffff',
     bgCream: '#fdfbf7',
