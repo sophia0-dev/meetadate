@@ -13,7 +13,7 @@ const HomePage = () => {
   // --- FETCH FROM WORDPRESS ---
   useEffect(() => {
     // Fetching the 3 most recent events for the "Upcoming Gatherings" section
-    fetch('http://localhost:10028/wp-json/wp/v2/event?per_page=3&_embed')
+    fetch('https://meetadatenow.com/wp-json/wp/v2/event?per_page=3&_embed')
       .then(res => res.json())
       .then(data => {
         setLiveEvents(data);

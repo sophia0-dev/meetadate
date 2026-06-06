@@ -22,16 +22,16 @@ const LoveNotesPage = () => {
   // --- FETCH LOVENOTES FROM WORDPRESS ---
 // --- FETCH LOVENOTES FROM WORDPRESS ---
   useEffect(() => {
-    fetch('http://localhost:10028/wp-json/wp/v2/lovenote?_embed')
+    fetch('https://meetadatenow.com/wp-json/wp/v2/lovenote?_embed')
       .then(response => response.json())
       .then(data => {
         const liveStories = data.map(wpNote => ({
           id: wpNote.id,
           names: `${wpNote.acf?.from || 'User'} & ${wpNote.acf?.to || 'User'}`,
           city: "MeetADate Match",
-          // The title in WP can act as your short "Quote"
+         
           quote: wpNote.title.rendered,
-          // The main WP content box is the "Story"
+
           story: wpNote.content.rendered.replace(/<[^>]*>?/gm, ''), // Strips HTML tags
           
           image: wpNote._embedded?.['wp:featuredmedia']?.[0]?.source_url || "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?auto=format&fit=crop&w=800&q=80"

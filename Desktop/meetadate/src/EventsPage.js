@@ -19,7 +19,7 @@ const EventsPage = () => {
 
   // --- FETCH DATA FROM WORDPRESS ---
   useEffect(() => {
-    fetch('http://localhost:10028/wp-json/wp/v2/event')
+    fetch('https://meetadatenow.com/wp-json/wp/v2/event')
       .then(response => response.json())
       .then(data => {
         // Map the messy WordPress data into clean objects for our cards
