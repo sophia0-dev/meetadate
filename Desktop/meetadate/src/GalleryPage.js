@@ -17,7 +17,7 @@ const GalleryPage = () => {
 
   useEffect(() => {
     // Fetching the gallery photos WITH the embedded images
-    fetch('https://meetadatenow.com/wp-json/wp/v2/gallery?_embed')
+    fetch('https://api.meetadatenow.com/wp-json/wp/v2/gallery?_embed')
       .then(res => res.json())
       .then(data => {
         setPhotos(data);

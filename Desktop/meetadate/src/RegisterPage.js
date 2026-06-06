@@ -46,7 +46,7 @@ const RegisterPage = () => {
       }
     };
 
-    fetch('https://meetadatenow.com/wp-json/wp/v2/profile', {
+    fetch('https://api.meetadatenow.com/wp-json/wp/v2/profile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

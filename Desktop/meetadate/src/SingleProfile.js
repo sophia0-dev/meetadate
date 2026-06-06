@@ -7,7 +7,7 @@ const SingleProfile = () => {
 
   useEffect(() => {
     // We use _embed to grab the Featured Image alongside the text data!
-    fetch('https://meetadatenow.com/wp-json/wp/v2/profile?per_page=1&_embed')
+    fetch('https://api.meetadatenow.com/wp-json/wp/v2/profile?per_page=1&_embed')
       .then(res => res.json())
       .then(data => {
         if (data && data.length > 0) {

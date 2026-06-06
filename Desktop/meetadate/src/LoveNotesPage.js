@@ -22,7 +22,7 @@ const LoveNotesPage = () => {
   // --- FETCH LOVENOTES FROM WORDPRESS ---
 // --- FETCH LOVENOTES FROM WORDPRESS ---
   useEffect(() => {
-    fetch('https://meetadatenow.com/wp-json/wp/v2/lovenote?_embed')
+    fetch('https://api.meetadatenow.com/wp-json/wp/v2/lovenote?_embed')
       .then(response => response.json())
       .then(data => {
         const liveStories = data.map(wpNote => ({
