@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: '',
-    age: '',
-    city: '',
-    profession: '',
-    quote: ''
-  });
-  const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
   const colors = {
     deepWine: '#4a0404',
@@ -26,27 +22,22 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus('submitting');
+    setErrorMessage('');
 
-    // IMPORTANT: Replace with your actual WordPress Username and the Application Password you just copied
+    // Your Admin API Credentials
     const wpUsername = 'sophia0_dev'; 
     const wpAppPassword = 'SCgk hcpj cFR0 bd9Y vNu6 RDO1'; 
-    
-    // This encodes your credentials securely for the header
     const authString = btoa(`${wpUsername}:${wpAppPassword}`);
 
-    // The Payload: Structuring the data for WordPress
+    // The Payload for creating a core User account
     const postData = {
-      title: formData.name,
-      status: 'draft', // Saves as draft so they don't immediately go live!
-      acf: {
-        age: formData.age,
-        city: formData.city,
-        profession: formData.profession,
-        quote: formData.quote
-      }
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+      roles: ['subscriber'] // Standard role so they don't get admin access!
     };
 
-    fetch('https://api.meetadatenow.com/wp-json/wp/v2/profile/', {
+    fetch('https://api.meetadatenow.com/wp-json/wp/v2/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,17 +45,22 @@ const RegisterPage = () => {
       },
       body: JSON.stringify(postData)
     })
-    .then(res => {
-      if (!res.ok) throw new Error('Failed to submit');
-      return res.json();
+    .then(async (res) => {
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.message || 'Failed to create account');
+      }
+      return data;
     })
     .then(data => {
       setStatus('success');
-      setFormData({ name: '', age: '', city: '', profession: '', quote: '' }); // Clear form
+      // Success! Send them to Step 2 and pass along their new User ID
+      navigate('/profile-setup', { state: { userId: data.id } }); 
     })
     .catch(err => {
       console.error(err);
       setStatus('error');
+      setErrorMessage(err.message);
     });
   };
 
@@ -82,40 +78,26 @@ const RegisterPage = () => {
         }
       `}</style>
 
-      <div style={{ maxWidth: '600px', width: '100%', backgroundColor: 'white', padding: '3rem', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', borderTop: `5px solid ${colors.deepWine}` }}>
+      <div style={{ maxWidth: '500px', width: '100%', backgroundColor: 'white', padding: '3rem', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', borderTop: `5px solid ${colors.deepWine}` }}>
         <h2 style={{ fontFamily: '"Cinzel", serif', color: colors.deepWine, textAlign: 'center', fontSize: '2rem', marginBottom: '2rem' }}>
-          Join MeetADate
+          Create Account
         </h2>
 
-        {status === 'success' ? (
-          <div style={{ textAlign: 'center', color: 'green', fontFamily: '"Lato", sans-serif' }}>
-            <h3 style={{ marginBottom: '1rem' }}>Application Received!</h3>
-            <p>Our team will review your profile. You can now close this page.</p>
-            <button onClick={() => navigate('/')} style={{ marginTop: '2rem', padding: '0.8rem 2rem', backgroundColor: colors.deepWine, color: 'white', border: 'none', borderRadius: '50px', cursor: 'pointer', fontFamily: '"Cinzel", serif' }}>Return Home</button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required className="form-input" />
-            
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} required className="form-input" style={{ flex: 1 }} />
-              <input type="text" name="city" placeholder="City (e.g., Abuja)" value={formData.city} onChange={handleChange} required className="form-input" style={{ flex: 2 }} />
-            </div>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="username" placeholder="Choose a Username" value={formData.username} onChange={handleChange} required className="form-input" />
+          
+          <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required className="form-input" />
+          
+          <input type="password" name="password" placeholder="Create Password" value={formData.password} onChange={handleChange} required className="form-input" />
 
-            <input type="text" name="profession" placeholder="Profession" value={formData.profession} onChange={handleChange} required className="form-input" />
-            
-            <textarea name="quote" placeholder="A short quote about what you're looking for..." value={formData.quote} onChange={handleChange} required className="form-input" rows="4" />
-
-            <button type="submit" disabled={status === 'submitting'} style={{ width: '100%', padding: '1rem', backgroundColor: colors.metallicGold, color: colors.deepWine, border: 'none', borderRadius: '50px', fontSize: '1.2rem', fontFamily: '"Cinzel", serif', fontWeight: 'bold', cursor: status === 'submitting' ? 'not-allowed' : 'pointer', transition: 'background-color 0.3s' }}>
-              {status === 'submitting' ? 'Submitting...' : 'Submit Profile'}
-            </button>
-            
-            {status === 'error' && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Something went wrong. Please try again.</p>}
-          </form>
-        )}
+          <button type="submit" disabled={status === 'submitting'} style={{ width: '100%', padding: '1rem', backgroundColor: colors.metallicGold, color: colors.deepWine, border: 'none', borderRadius: '50px', fontSize: '1.2rem', fontFamily: '"Cinzel", serif', fontWeight: 'bold', cursor: status === 'submitting' ? 'not-allowed' : 'pointer', transition: 'background-color 0.3s' }}>
+            {status === 'submitting' ? 'Creating Account...' : 'Continue to Profile'}
+          </button>
+          
+          {status === 'error' && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>{errorMessage}</p>}
+        </form>
       </div>
     </div>
   );
 };
-
 export default RegisterPage;

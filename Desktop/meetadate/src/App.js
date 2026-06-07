@@ -7,6 +7,7 @@ import EventsPage from './EventsPage';
 import GalleryPage from './GalleryPage';
 import LoveNotesPage from './LoveNotesPage';
 import MeetUsPage from './MeetUsPage'; 
+import ProfileSetup from './ProfileSetup';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/lovenotes" element={<LoveNotesPage />} /> 
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/meetus" element={<MeetUsPage />} /> 
+        <Route path="/profile-setup" element={<ProfileSetup />} />
       </Routes>
     </BrowserRouter>
   );
