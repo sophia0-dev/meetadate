@@ -16,12 +16,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/events" element={<EventsPage />} /> 
-        <Route path="/gallery" element={<GalleryPage />} /> 
-        <Route path="/lovenotes" element={<LoveNotesPage />} /> 
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/meetus" element={<MeetUsPage />} /> 
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/lovenotes" element={<LoveNotesPage />} />
+        <Route path="/app/register" element={<RegisterPage />} />
+        <Route path="/meetus" element={<MeetUsPage />} />
         <Route path="/profile-setup" element={<ProfileSetup />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
