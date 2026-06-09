@@ -1,0 +1,153 @@
+/* Base Navbar structural styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 60px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+}
+.navbar-logo-img {
+  max-height: 55px !important; 
+  width: auto;
+  display: block;
+  margin: 0 auto; /* Forces the image itself to stay perfectly centered */
+  object-fit: contain;
+}
+
+/* 1. Homepage Style (Transparent & Floating) */
+.nav-transparent {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  background-color: transparent;
+}
+
+/* 2. Inner Pages Style (Solid Dark Burgundy) */
+.nav-solid {
+  position: relative;
+  background-color: #23050a; 
+  border-bottom: 1px solid rgba(204, 165, 80, 0.3); /* Subtle gold border */
+}
+.brand-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Forces everything to stack in the middle */
+  justify-content: center;
+  text-decoration: none;
+  gap: 2px; 
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text { 
+  color: #fff; 
+  font-family: 'Playfair Display', serif; 
+  font-size: 26px; 
+  margin: 0; 
+  letter-spacing: 1px;
+  line-height: 1;
+  text-align: center; /* Ensures the text centers under the image */
+}
+
+.logo-tagline { 
+  color: #CCA550; 
+  font-size: 11px; 
+  font-style: italic; 
+  font-family: Georgia, serif;
+  margin-top: 2px;
+  text-align: center;
+}
+
+.nav-links { 
+  display: flex; 
+  align-items: center; 
+  gap: 35px; 
+}
+
+.nav-links a { 
+  color: #e0d5ce; 
+  text-decoration: none;
+  font-family: 'Segoe UI', sans-serif; 
+  font-size: 11px; 
+  letter-spacing: 1.5px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active { 
+  color: #CCA550; 
+  border-bottom: 2px solid #CCA550; /* Gold underline for active page */
+}
+
+/* Specific styling for the Join Us button in the nav */
+.btn-nav-join {
+  background: linear-gradient(to right, #b8863b, #ebd08d, #b8863b);
+  color: #23050a !important;
+  padding: 8px 24px !important;
+  border-radius: 20px;
+  font-weight: bold;
+  border: none !important;
+}
+
+/* Hide the hamburger icon on laptops and desktops */
+.mobile-menu-icon {
+  display: none;
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (PHONES & TABLETS)
+   ========================================= */
+@media screen and (max-width: 1024px) {
+  
+  .navbar {
+    padding: 15px 30px; /* slightly smaller padding for phones */
+  }
+
+  /* Show the hamburger icon */
+  .mobile-menu-icon {
+    display: block;
+    cursor: pointer;
+    z-index: 999; /* Keeps the icon on top of the menu */
+  }
+
+  /* Morph the nav-links into a full-screen mobile menu */
+ .nav-links {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: #23050a;
+  display: flex; /* Make sure this is here! */
+  flex-direction: column;
+  justify-content: flex-start; /* CHANGE: From center to flex-start */
+  padding-top: 100px;         /* ADD: Adds space from the top */
+  align-items: center;
+  gap: 30px;                  /* OPTIONAL: Tighter spacing */
+  overflow-y: auto;           /* ADD: Allows scrolling if links exceed screen */
+  transition: right 0.4s ease-in-out;
+  z-index: 998;
+}
+
+  /* When the menu is toggled open, slide it in! */
+  .nav-links.active {
+    right: 0;
+  }
+
+  /* Make the links bigger for tapping on phones */
+  .nav-links a {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .btn-nav-join {
+    font-size: 14px !important;
+    padding: 12px 35px !important;
+  }
+}

@@ -1,103 +1,129 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import './RegisterPage.css';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
-  const [status, setStatus] = useState('idle');
-  const [errorMessage, setErrorMessage] = useState('');
   
-  const navigate = useNavigate();
-
-  const colors = {
-    deepWine: '#4a0404',
-    metallicGold: '#c5a059',
-    bgCream: '#fdfbf7',
-    textDark: '#2a2a2a',
-  };
+  // States to control loading buttons and the success screen
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus('submitting');
-    setErrorMessage('');
+    setIsLoading(true);
+    
+    try {
+      // Pointing directly to the custom, secure WordPress endpoint you built
+const response = await fetch('https://api.meetadatenow.com/wp-json/wp/v2/users/register', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        })
+      });
 
-    // Your Admin API Credentials
-    const wpUsername = 'sophia0_dev'; 
-    const wpAppPassword = 'SCgk hcpj cFR0 bd9Y vNu6 RDO1'; 
-    const authString = btoa(`${wpUsername}:${wpAppPassword}`);
-
-    // The Payload for creating a core User account
-    const postData = {
-      username: formData.username,
-      email: formData.email,
-      password: formData.password,
-      roles: ['subscriber'] // Standard role so they don't get admin access!
-    };
-
-    fetch('https://api.meetadatenow.com/wp-json/wp/v2/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ${authString}`
-      },
-      body: JSON.stringify(postData)
-    })
-    .then(async (res) => {
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message || 'Failed to create account');
+      // If WordPress rejects it (e.g., email already taken), catch the error
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to register user");
       }
-      return data;
-    })
-    .then(data => {
-      setStatus('success');
-      // Success! Send them to Step 2 and pass along their new User ID
-      navigate('/profile-setup', { state: { userId: data.id } }); 
-    })
-    .catch(err => {
-      console.error(err);
-      setStatus('error');
-      setErrorMessage(err.message);
-    });
+
+      const userData = await response.json();
+      console.log("Successfully registered securely!", userData);
+
+      localStorage.setItem('meetadate_user', JSON.stringify({ username: formData.username }));
+      
+      setIsLoading(false);
+      setIsRegistered(true); // This instantly swaps the form for the gold checkmark!
+
+    } catch (error) {
+      console.error("Registration Error:", error.message);
+      alert(`Registration Failed: Username or Email may already exist.`); 
+      setIsLoading(false);
+    }
   };
 
+  // --- THE SUCCESS SCREEN ---
+  if (isRegistered) {
+    return (
+      <div className="register-container">
+        <div className="register-card success-card">
+          <div className="success-icon-wrapper">
+            <svg className="success-icon" viewBox="0 0 24 24" fill="none" stroke="#CCA550" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          
+          <h2 className="success-title">Welcome to the Club!</h2>
+          <p className="success-message">
+            You have successfully registered.<br/>
+            Your journey to meaningful connections starts now.
+          </p>
+          
+          <Link to="/" className="btn-success-home">EXPLORE THE HOMEPAGE &rarr;</Link>
+        </div>
+      </div>
+    );
+  }
+
+  // --- THE REGISTRATION FORM ---
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: colors.bgCream, alignItems: 'center', padding: '4rem 1rem' }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap');
-        .form-input {
-          width: 100%; padding: 1rem; margin-bottom: 1.5rem;
-          border: 1px solid #ccc; border-radius: 4px;
-          font-family: 'Lato', sans-serif; font-size: 1rem;
-        }
-        .form-input:focus {
-          outline: none; border-color: ${colors.metallicGold}; box-shadow: 0 0 5px rgba(197, 160, 89, 0.5);
-        }
-      `}</style>
-
-      <div style={{ maxWidth: '500px', width: '100%', backgroundColor: 'white', padding: '3rem', borderRadius: '8px', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', borderTop: `5px solid ${colors.deepWine}` }}>
-        <h2 style={{ fontFamily: '"Cinzel", serif', color: colors.deepWine, textAlign: 'center', fontSize: '2rem', marginBottom: '2rem' }}>
-          Create Account
-        </h2>
-
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="username" placeholder="Choose a Username" value={formData.username} onChange={handleChange} required className="form-input" />
+    <div className="register-container">
+      <div className="register-card">
+        <h2 className="register-title">CREATE ACCOUNT</h2>
+        
+        <form onSubmit={handleSubmit} className="register-form">
+          <input
+            type="text"
+            name="username"
+            placeholder="Choose a Username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+            disabled={isLoading}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            disabled={isLoading}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Create Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            disabled={isLoading}
+          />
           
-          <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required className="form-input" />
-          
-          <input type="password" name="password" placeholder="Create Password" value={formData.password} onChange={handleChange} required className="form-input" />
-
-          <button type="submit" disabled={status === 'submitting'} style={{ width: '100%', padding: '1rem', backgroundColor: colors.metallicGold, color: colors.deepWine, border: 'none', borderRadius: '50px', fontSize: '1.2rem', fontFamily: '"Cinzel", serif', fontWeight: 'bold', cursor: status === 'submitting' ? 'not-allowed' : 'pointer', transition: 'background-color 0.3s' }}>
-            {status === 'submitting' ? 'Creating Account...' : 'Continue to Profile'}
+          <button type="submit" className="btn-register" disabled={isLoading}>
+            {isLoading ? "CONNECTING..." : "REGISTER"}
           </button>
+
+          <p className="auth-switch-text">
+            Already have an account? <Link to="/login" className="auth-switch-link">Login here</Link>
+          </p>
           
-          {status === 'error' && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>{errorMessage}</p>}
         </form>
+        
       </div>
     </div>
   );
 };
+
 export default RegisterPage;

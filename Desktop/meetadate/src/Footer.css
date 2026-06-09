@@ -1,0 +1,134 @@
+.footer-container {
+  background-color: transparent; /* Blends into the body's burgundy */
+  padding: 80px 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid rgba(204, 165, 80, 0.15); /* Faint gold line at top */
+}
+
+/* Title Section */
+.footer-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.footer-line {
+  height: 1px;
+  background-color: rgba(204, 165, 80, 0.5); /* Dim gold */
+  width: 50px;
+}
+
+.footer-title {
+  color: #CCA550;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.footer-subtitle {
+  color: #ccc;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* Social Icons */
+.footer-socials {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.social-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-icon-ring {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #CCA550;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #CCA550;
+  transition: all 0.3s ease;
+}
+
+.social-icon-ring:hover {
+  background-color: rgba(204, 165, 80, 0.1);
+  transform: translateY(-2px);
+}
+
+.social-item span {
+  color: #CCA550;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+/* Email Contact Section */
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.email-icon {
+  color: #CCA550;
+  display: flex;
+}
+
+.email-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.email-links a {
+  color: #e0d5ce;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.email-links a:hover {
+  color: #CCA550;
+}
+
+.email-divider {
+  color: #666;
+  font-size: 12px;
+}
+
+/* Big Gold Button */
+.btn-footer-join {
+  background: linear-gradient(to right, #b8863b, #ebd08d, #b8863b);
+  color: #23050a;
+  padding: 12px 40px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(204, 165, 80, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.btn-footer-join:hover {
+  transform: scale(1.05);
+}

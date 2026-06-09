@@ -1,0 +1,114 @@
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  /* --- NEW ROMANTIC DINNER BACKGROUND --- */
+  background-image: url('https://i.ibb.co/h1mVkJj0/image-b6db09fe.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px; 
+}
+/* The dark red/black gradient over the image */
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(35, 5, 10, 0.3) 0%, rgba(35, 5, 10, 0.8) 70%, #23050a 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Keeps text above the dark overlay */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.hero-cursive {
+  font-family: 'Great Vibes', cursive;
+  font-size: 6.5rem;
+  color: #CCA550; /* Gold */
+  font-weight: 400;
+  margin: 0;
+  line-height: 1;
+}
+
+.title-heart {
+  color: #CCA550;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  margin-left: -10px;
+}
+
+/* The divider under the title */
+.hero-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.hero-line {
+  height: 1px;
+  width: 50px;
+  background: linear-gradient(to right, transparent, #CCA550, transparent);
+}
+
+.hero-mini-heart {
+  color: #CCA550;
+  font-size: 12px;
+}
+
+.hero-subtitle {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #e0d5ce;
+  margin-bottom: 40px;
+}
+
+/* The list of features with icons */
+.hero-features {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.hero-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e0d5ce;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 13px;
+}
+
+.feature-icon {
+  color: #CCA550;
+  font-size: 18px;
+}
+
+/* The big Sign Up button */
+.btn-hero-signup {
+  background: linear-gradient(to right, #b8863b, #ebd08d, #b8863b);
+  color: #23050a;
+  padding: 12px 40px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(204, 165, 80, 0.3);
+}

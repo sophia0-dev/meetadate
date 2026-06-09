@@ -1,0 +1,118 @@
+/* Container Background */
+.hiw-section {
+  background-color: #FAF6F0; /* The exact cream from the image */
+  padding: 60px 20px;
+  color: #3B1B22; /* Dark burgundy */
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Header with Lines */
+.hiw-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 5px;
+}
+
+.hiw-line {
+  height: 1px;
+  background-color: #CCA550; /* Gold */
+  width: 40px;
+}
+
+.hiw-title {
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #3B1B22;
+  margin: 0;
+}
+
+.hiw-subtitle {
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 45px;
+}
+
+/* Flexbox layout for the 3 steps */
+.hiw-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Individual Step (Icon + Text side-by-side) */
+.hiw-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  max-width: 270px;
+}
+
+/* Golden Ring for Icons */
+.hiw-icon-ring {
+  width: 65px;
+  height: 65px;
+  border: 1.5px solid #CCA550;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0; /* Prevents the circle from squishing */
+  color: #CCA550;
+}
+
+.hiw-icon-ring svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Step Number and Title */
+.hiw-step-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.hiw-number {
+  background-color: #3B1B22;
+  color: #FAF6F0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.hiw-step-title {
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+/* Description Text */
+.hiw-step-desc {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+}
+
+/* The little arrows between steps */
+.hiw-arrow {
+  color: #CCA550;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: -30px; /* Aligns arrow with the rings */
+}

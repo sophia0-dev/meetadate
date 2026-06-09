@@ -1,0 +1,51 @@
+.gold-waves-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1; /* Sits exactly between your background image and your text */
+  pointer-events: none; /* Prevents the waves from blocking clicks on buttons */
+  opacity: 0.6; /* Keeps it subtle so it doesn't overpower the text */
+}
+
+.gold-wave {
+  position: absolute;
+  width: 200%; /* Wider than the screen so it can move seamlessly */
+  height: 100%;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 0 8px rgba(235, 208, 141, 0.5)); /* Adds the glowing aura */
+}
+
+/* Specific positioning and animation speeds for each wave */
+.wave-1 {
+  top: -10%;
+  animation: flowWave 25s linear infinite;
+}
+
+.wave-2 {
+  top: 10%;
+  animation: flowWave 18s linear infinite reverse; /* Moves the opposite direction */
+  opacity: 0.8;
+}
+
+.wave-3 {
+  top: 25%;
+  animation: flowWave 22s ease-in-out infinite alternate; /* Slowly pulses back and forth */
+  opacity: 0.5;
+}
+
+/* The continuous flowing animation */
+@keyframes flowWave {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) scaleY(1.1); /* Slight stretch for organic movement */
+  }
+  100% {
+    transform: translateX(-50%) scaleY(1);
+  }
+}

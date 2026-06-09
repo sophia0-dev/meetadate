@@ -1,38 +1,208 @@
-.App {
-  text-align: center;
+/* --- 1. GLOBAL VARIABLES & RESET --- */
+:root {
+  --burgundy: #23050a;
+  --dark-card: #150205;
+  --cream: #f9f6f0;
+  --gold: #dca754;
+  --gold-gradient: linear-gradient(to right, #b8863b, #ebd08d, #b8863b);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  background-color: var(--burgundy);
+  color: white;
+  font-family: 'Playfair Display', serif; /* Elegant Serif Font */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a { text-decoration: none; color: inherit; }
+
+/* --- 2. GOLD TYPOGRAPHY & BUTTONS --- */
+.gold-accent { 
+  color: var(--gold); 
+  font-size: 11px; 
+  letter-spacing: 2px; 
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.btn-gold {
+  background: var(--gold-gradient);
+  color: #23050a;
+  padding: 8px 24px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-gold-large {
+  background: var(--gold-gradient);
+  color: #23050a;
+  padding: 12px 40px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 30px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+/* --- 3. NAVBAR --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: transparent;
+  position: absolute; /* Lets it sit over the background image */
+  top: 0; width: 100%; z-index: 10;
+}
+
+.brand-link { text-align: center; }
+.logo-text { color: var(--gold); font-size: 28px; margin-bottom: 2px; }
+.logo-tagline { color: var(--gold); font-size: 12px; font-style: italic; }
+
+.nav-links { display: flex; align-items: center; gap: 35px; }
+.nav-links a { font-family: sans-serif; font-size: 11px; letter-spacing: 1px; color: #eeddc3;}
+.nav-links a:hover { color: var(--gold); }
+
+/* --- 4. HERO SECTION --- */
+.hero-section {
+  min-height: 90vh;
+  /* YOU MUST ADD YOUR IMAGE HERE for the couple/city background to show */
+  background-image: radial-gradient(circle at center, rgba(35,5,10,0.4) 0%, var(--burgundy) 100%), url('https://via.placeholder.com/1920x1080/23050a/dca754?text=Add+Background+Image+Here');
+  background-size: cover;
+  background-position: top center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
+  padding-top: 100px;
 }
 
-.App-link {
-  color: #61dafb;
+.cursive-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 6rem;
+  color: var(--gold);
+  font-weight: normal;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.hero-subtitle {
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #e0d5ce;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
 }
+
+.hero-icons {
+  display: flex;
+  gap: 30px;
+  color: var(--gold);
+  font-family: sans-serif;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+/* --- 5. HOW IT WORKS (CREAM) --- */
+.how-it-works {
+  background-color: var(--cream);
+  color: #333;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.how-it-works h2 { letter-spacing: 3px; font-size: 24px; color: #23050a; }
+.section-sub { font-style: italic; color: #666; margin: 10px 0 50px 0; font-size: 15px;}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.step-card { width: 220px; text-align: left; }
+.step-card h3 { color: #23050a; margin-bottom: 10px; font-size: 16px; font-family: sans-serif; letter-spacing: 1px;}
+.step-card p { font-family: sans-serif; font-size: 13px; color: #555; line-height: 1.6;}
+
+.step-icon {
+  width: 50px; height: 50px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.step-arrow { color: var(--gold); margin-top: 15px; font-size: 20px;}
+
+/* --- 6. FEATURED BLOCKS --- */
+.featured-sections { padding: 80px 60px; max-width: 1200px; margin: 0 auto; }
+
+.feature-block {
+  display: flex;
+  background-color: var(--dark-card);
+  border: 1px solid rgba(220, 167, 84, 0.2);
+  border-radius: 8px;
+  margin-bottom: 40px;
+  min-height: 350px;
+}
+
+.feature-block.reverse { flex-direction: row-reverse; }
+
+.feature-img {
+  flex: 1.2;
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+}
+
+.feature-text {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feature-text h2 { font-size: 28px; margin-bottom: 15px; font-weight: normal;}
+.feature-text p { font-family: sans-serif; font-size: 13px; line-height: 1.8; color: #bbb; margin-bottom: 25px;}
+
+.event-details { list-style: none; color: #ccc; font-family: sans-serif; font-size: 13px; margin-bottom: 25px;}
+.event-details li { margin-bottom: 8px; }
+
+.gold-link { color: var(--gold); font-family: sans-serif; font-size: 11px; letter-spacing: 1px; margin-top: 20px; font-weight: bold;}
+
+/* --- 7. FOOTER --- */
+.footer-section {
+  text-align: center;
+  padding: 60px 20px 40px 20px;
+  border-top: 1px solid rgba(220, 167, 84, 0.2);
+}
+
+.footer-desc { font-family: sans-serif; font-size: 13px; color: #999; line-height: 1.6; margin: 15px 0; }
+
+.social-links { display: flex; justify-content: center; gap: 40px; margin: 30px 0; }
+.social-links span { color: var(--gold); font-size: 11px; font-family: sans-serif; letter-spacing: 1px;}
+
+.footer-emails { margin-bottom: 30px; font-family: sans-serif; font-size: 13px;}
+.footer-emails p { margin: 5px 0; }
+.footer-emails a { color: #ccc; }
+.footer-emails a:hover { color: var(--gold); }
