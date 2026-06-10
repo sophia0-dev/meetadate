@@ -1,8 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './Footer.css';
 
 const Footer = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('meetadate_user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
   return (
     <footer className="footer-container">
       
@@ -68,7 +75,9 @@ const Footer = () => {
           <a href="mailto:info@meetadatenow.com">info@meetadatenow.com</a>
         </div>
       </div>
-<Link to="/register" className="btn-footer-join" style={{textDecoration: 'none', display: 'inline-block'}}>JOIN MEETADATE</Link>
+{!user && (
+          <button className="btn-footer-join">JOIN MEETADATE</button>
+        )}
 
     </footer>
   );

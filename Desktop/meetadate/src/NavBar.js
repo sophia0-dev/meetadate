@@ -31,6 +31,10 @@ const NavBar = () => {
       <div className="nav-brand">
         <Link to="/" className="brand-link" onClick={closeMenu}>
           <img src="https://i.ibb.co/cKhGR5bf/image-57e9adc3.png" alt="MeetADate Logo" className="navbar-logo-img" />
+          <div className="brand-text-block">
+            <span className="brand-title">MeetADate</span>
+            <span className="brand-tagline">You know you want to.</span>
+          </div>
         </Link>
       </div>
       
@@ -57,15 +61,14 @@ const NavBar = () => {
         <Link to="/about" className={location.pathname === '/meetus' ? "active" : ""} onClick={closeMenu}>MEET US</Link>
 
         
-       {/* THE SMART BUTTONS (CSS Safe Version) */}
+      {/* THE SMART BUTTONS */}
         {user ? (
-          <button onClick={handleLogout} className="btn-nav-join" style={{cursor: 'pointer', background: 'transparent', border: '1px solid #CCA550', color: '#CCA550', marginTop: '20px', padding: '10px 20px', width: 'fit-content', alignSelf: 'center'}}>
+          <button onClick={handleLogout} className="btn-nav-logout" style={{marginTop: '20px'}}>
             LOGOUT ({user.username})
           </button>
         ) : (
-          /* Using a Fragment (<>) instead of a <div> so CSS doesn't hide them! */
           <>
-            <Link to="/login" onClick={closeMenu} style={{color: '#CCA550', fontWeight: 'bold', marginTop: '20px'}}>LOGIN</Link>
+            <Link to="/login" className="login-link" onClick={closeMenu} style={{marginTop: '20px'}}>LOGIN</Link>
             <Link to="/register" className="btn-nav-join" onClick={closeMenu} style={{marginTop: '10px'}}>JOIN US</Link>
           </>
         )}

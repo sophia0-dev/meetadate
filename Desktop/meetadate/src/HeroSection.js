@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './HeroSection.css';
 
 const HeroSection = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem('meetadate_user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
   return (
     <section className="hero-container">
       <div className="hero-overlay"></div>
@@ -80,7 +88,11 @@ const HeroSection = () => {
 
         </div>
 
-<Link to="/register" className="btn-hero-signup" style={{textDecoration: 'none', display: 'inline-block'}}>SIGN UP &rarr;</Link>
+{!user && (
+          <Link to="/register" className="btn-hero-signup" style={{textDecoration: 'none'}}>
+            SIGN UP &rarr;
+          </Link>
+        )}
       </div>
     </section>
   );
